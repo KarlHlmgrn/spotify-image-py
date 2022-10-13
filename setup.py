@@ -1,4 +1,5 @@
 from setuptools import setup, find_packages
+from codecs import open
 
 with open("README.md", "r") as f:
     long_description = f.read()
