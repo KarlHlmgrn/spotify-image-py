@@ -140,7 +140,7 @@ class SpotifyUser:
         :rtype: tuple[Union[Image.Image, None], dict]
         """
         if self._access_token is None or (time.time() - int(self._time_latest_access_token or 0) > 3600 and not self._fetch_access_token(refresh = True)):
-            return self._get_log_in_qr_code()
+            return self._get_log_in_qr_code(), {}
         CURRENTLY_PLAYING_URL = "https://api.spotify.com/v1/me/player"
         headers = {
             "Accept": "application/json",
