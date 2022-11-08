@@ -7,7 +7,7 @@ import qrcode
 import socket
 import threading
 import time
-from typing import Optional, Union
+from typing import Optional, Union, Tuple
 from PIL import Image
 from .clienthandler import create_app
 from urllib.parse import urlencode
@@ -45,7 +45,7 @@ class SpotifyUser:
             )
         ).start()
 
-    def _get_log_in_link(self) -> tuple[str, str]:
+    def _get_log_in_link(self) -> Tuple[str, str]:
         """
         :return: A link to Spotify login page for the Client Handler
         :rtype: tuple[str, str]
@@ -129,7 +129,7 @@ class SpotifyUser:
             return None
         return Image.open(requests.get(image_url, stream=True).raw)
 
-    def get_currently_playing_state(self) -> tuple[Union[Image.Image, None], dict]:
+    def get_currently_playing_state(self) -> Tuple[Union[Image.Image, None], dict]:
         """
         Returns an image and dictionary of the state of the Spotify player.
         If the status code is 204 no song is playing
