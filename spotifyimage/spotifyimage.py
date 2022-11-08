@@ -33,6 +33,7 @@ class SpotifyUser:
         self._client_secret = client_secret
         self._host = host
         self._port = port
+        self._access_token = None
         if refresh_token is not None:
             self._refresh_token = refresh_token
             self._fetch_access_token(refresh = True)
@@ -138,7 +139,7 @@ class SpotifyUser:
         :return: Image (or None) and a dictionary of current state of the Spotify player
         :rtype: tuple[Union[Image.Image, None], dict]
         """
-        if  self._access_token is None or (time.time() - int(self._time_latest_access_token or 0) > 3600 and not self._fetch_access_token(refresh = True)):
+        if self._access_token is None or (time.time() - int(self._time_latest_access_token or 0) > 3600 and not self._fetch_access_token(refresh = True)):
             return self._get_log_in_qr_code()
         CURRENTLY_PLAYING_URL = "https://api.spotify.com/v1/me/player"
         headers = {
