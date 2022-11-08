@@ -138,7 +138,7 @@ class SpotifyUser:
         :return: Image (or None) and a dictionary of current state of the Spotify player
         :rtype: tuple[Union[Image.Image, None], dict]
         """
-        if (time.time() - int(self._time_latest_access_token or 0) > 3600 and not self._fetch_access_token(refresh = True)) or self._access_token is None:
+        if  self._access_token is None or (time.time() - int(self._time_latest_access_token or 0) > 3600 and not self._fetch_access_token(refresh = True)):
             return self._get_log_in_qr_code()
         CURRENTLY_PLAYING_URL = "https://api.spotify.com/v1/me/player"
         headers = {
