@@ -45,7 +45,7 @@ class SpotifyUser:
             )
         ).start()
 
-    def _get_log_in_link(self) -> tuple[str, str]:
+    def _get_log_in_link(self):
         """
         :return: A link to Spotify login page for the Client Handler
         :rtype: tuple[str, str]
