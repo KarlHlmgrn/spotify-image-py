@@ -45,7 +45,7 @@ class SpotifyUser:
             )
         ).start()
 
-    def _get_log_in_link(self):
+    def _get_log_in_link(self) -> tuple[str, str]:
         """
         :return: A link to Spotify login page for the Client Handler
         :rtype: tuple[str, str]
@@ -61,7 +61,7 @@ class SpotifyUser:
         }
         return f"{OAUTH_AUTHORIZE_URL}?{urlencode(params)}", self.state
 
-    def _fetch_access_token(self, auth_code = None, refresh = False):
+    def _fetch_access_token(self, auth_code = None, refresh = False) -> bool:
         """
         Fetches the access token from the Spotify API either with a authentication code or the stored refresh token
 
@@ -107,7 +107,7 @@ class SpotifyUser:
         self._time_latest_access_token = time.time()
         return True
 
-    def _get_log_in_qr_code(self):
+    def _get_log_in_qr_code(self) -> Image.Image:
         """
         :return: A QR code for the login page
         :rtype: Image.Image
@@ -115,7 +115,7 @@ class SpotifyUser:
         ip = socket.gethostbyname(socket.gethostname())
         return qrcode.make(f"http://{ip}:{self._port}/login")
 
-    def _get_image_from_url(self, image_url):
+    def _get_image_from_url(self, image_url: Union[str, None]) -> Union[Image.Image, None]:
         """
         Returns either the image of the currently playing song or a QR code for the login page associated with the client handler
 
@@ -129,7 +129,7 @@ class SpotifyUser:
             return None
         return Image.open(requests.get(image_url, stream=True).raw)
 
-    def get_currently_playing_state(self):
+    def get_currently_playing_state(self) -> tuple[Union[Image.Image, None], dict]:
         """
         Returns an image and dictionary of the state of the Spotify player.
         If the status code is 204 no song is playing
