@@ -1,5 +1,5 @@
 from inky.auto import auto
-from spotifyimage import SpotifyUser
+from .spotifyimage import SpotifyUser
 from time import sleep
 
 display = auto()
