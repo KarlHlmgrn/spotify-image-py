@@ -10,7 +10,7 @@
 - Raspberry Pi projects
 - E-ink displays
 - And everything else you can think of
-### What makes spotify-image-py different?  
+### What makes spotify-image-py special?  
 Spotify-image-py uses Spotify's proprietary API to log you safely into the application via a QR-code.
 ---
 ### Well, how do I get started?  
