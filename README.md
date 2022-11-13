@@ -22,7 +22,9 @@ from PIL import Image
 
 spotify_user = SpotifyUser(client_id, client_secret, "0.0.0.0", 3030)
 
-spotify_user.get_currently_played_image().show()
+img, data = spotify_user.get_currently_playing_state()
+print(f"{data["name"]} by {data["artists"]}")
+img.show()
 ```
 ##### And ta-da you have now created your first program using spotify-image-py.
 ---
