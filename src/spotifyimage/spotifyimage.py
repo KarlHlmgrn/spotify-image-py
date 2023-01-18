@@ -60,7 +60,7 @@ class SpotifyUser:
             "redirect_uri": f"http://localhost:{self._port}/callback",
             "state": self._state
         }
-        return f"{OAUTH_AUTHORIZE_URL}?{urlencode(params)}", self.state
+        return f"{OAUTH_AUTHORIZE_URL}?{urlencode(params)}", self._state
 
     def _fetch_access_token(self, auth_code = None, refresh = False) -> bool:
         """
