@@ -81,7 +81,7 @@ class SpotifyUser:
         params = {
             "grant_type": "authorization_code",
             "code": auth_code,
-            "redirect_uri": f"http://localhost:{self.PORT}/callback"
+            "redirect_uri": f"http://localhost:{self._port}/callback"
         }
         if refresh:
             params = {
