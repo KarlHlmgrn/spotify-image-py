@@ -58,7 +58,7 @@ class SpotifyUser:
             "response_type": "code",
             "scope": "user-read-playback-state",
             "redirect_uri": f"http://localhost:{self._port}/callback",
-            "state": self.state
+            "state": self._state
         }
         return f"{OAUTH_AUTHORIZE_URL}?{urlencode(params)}", self.state
 
