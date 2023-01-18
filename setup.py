@@ -19,5 +19,6 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/KarlHlmgrn/spotify-image-py",
-    packages=find_packages()
+    package_dir={'':"src"},
+    packages=find_packages("src")
 )
