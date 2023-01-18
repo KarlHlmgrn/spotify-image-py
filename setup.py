@@ -5,7 +5,7 @@ with open("README.md", "r") as f:
 
 setup(
     name="spotify-image-py",
-    version="1.0",
+    version="1.0.1",
     author="KarlHlmgrn",
     author_email="karlhlmgrn.github@gmail.com",
     description="Simple library to get currently playing song from Spotify, optimal for small projects",
