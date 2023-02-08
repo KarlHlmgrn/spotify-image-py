@@ -104,7 +104,8 @@ class SpotifyUser:
             return False
         data = response.json()
         self._access_token = data["access_token"]
-        self._refresh_token = data["refresh_token"]
+        if not refresh:
+            self._refresh_token = data["refresh_token"]
         self._time_latest_access_token = time.time()
         return True
 
