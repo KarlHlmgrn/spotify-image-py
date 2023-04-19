@@ -26,9 +26,11 @@ class SpotifyUser:
     :type port: int
     :param refresh_token: Only use if you have a refresh token from Spotify API
     :type refresh_token: str
+    :param store_refresh_token: If to store the refresh token/use stored refresh token
+    :type store_refresh_token: bool
     """
 
-    def __init__(self, client_id: str, client_secret: str, host: str = "0.0.0.0", port: int = 3030, refresh_token = None):
+    def __init__(self, client_id: str, client_secret: str, host: str = "0.0.0.0", port: int = 3030, refresh_token = None, store_refresh_token = True):
         self._client_id = client_id
         self._client_secret = client_secret
         self._host = host
@@ -37,6 +39,12 @@ class SpotifyUser:
         if refresh_token is not None:
             self._refresh_token = refresh_token
             self._fetch_access_token(refresh = True)
+        if store_refresh_token:
+            try:
+                with open("refresh_token.txt", "r") as f:
+                    self._refresh_token = f.read()
+            except FileNotFoundError:
+                print("Error: Could not get refresh token")
         threading.Thread(
             target=lambda: create_app(self).run(
                 host = self._host, 
@@ -106,6 +114,8 @@ class SpotifyUser:
         self._access_token = data["access_token"]
         if not refresh:
             self._refresh_token = data["refresh_token"]
+            with open("refresh_token.txt", "w") as file:
+                file.write(self._refresh_token)
         self._time_latest_access_token = time.time()
         return True
 
