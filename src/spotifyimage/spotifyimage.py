@@ -43,6 +43,7 @@ class SpotifyUser:
             try:
                 with open("refresh_token.txt", "r") as f:
                     self._refresh_token = f.read()
+                    self._fetch_access_token(refresh = True)
             except FileNotFoundError:
                 print("Error: Could not get refresh token")
         threading.Thread(
