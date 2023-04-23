@@ -168,6 +168,11 @@ class SpotifyUser:
                 "status_code": response.status_code
             }
         elif response.status_code == 204:
+            if self._latest_image_url is None:
+                return None, {
+                    "is_playing": False,
+                    "status_code": 204
+                }
             return self._get_image_from_url(self._latest_image_url), {
                 "image_url": self._latest_image_url,
                 "is_playing": False,
